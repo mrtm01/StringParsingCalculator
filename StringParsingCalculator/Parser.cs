@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+/*
+ * Parser very much based on:
+ * https://medium.com/@CantabileApp/writing-a-simple-math-expression-engine-in-c-d414de18d4ce
+ */
 namespace StringParsingCalculator
 {
     public class Parser
@@ -47,6 +50,7 @@ namespace StringParsingCalculator
                 {
                     op = (a, b) => a - b;
                 }
+
 
                 // Binary operator found?
                 if (op == null)
@@ -96,22 +100,6 @@ namespace StringParsingCalculator
             }
         }
 
-        // Parse a leaf node
-        // (For the moment this is just a number)
-        TreeNode ParseLeaf()
-        {
-            // Is it a number?
-            if (_lexer.Token.GetTokenType() == TokenType.NUMBER)
-            {
-                var node = new TreeNodeNumber(_lexer.Token.GetValue());
-                _lexer.NextToken();
-                return node;
-            }
-
-            // Don't Understand
-            throw new Exception($"Unexpect token: {_lexer.Token.GetTokenType()}");
-        }
-        // Parse a unary operator (eg: negative/positive)
         TreeNode ParseUnary()
         {
             // Positive operator is a no-op so just skip it
@@ -138,5 +126,38 @@ namespace StringParsingCalculator
 
             return ParseLeaf();
         }
+        // Parse a leaf node
+        // (For the moment this is just a number)
+        TreeNode ParseLeaf()
+        {
+            // Parenthesis?
+            if (_lexer.Token.GetTokenType() == TokenType.OPERATOR_LPARENTHESIS)
+            {
+                // Skip '('
+                _lexer.NextToken();
+
+                // Parse a top-level expression
+                var node = ParseAddSubtract();
+
+                // Check and skip ')'
+                if (_lexer.Token.GetTokenType() != TokenType.OPERATOR_RPARENTHESIS)
+                    throw new SyntaxException("Missing close parenthesis");
+                _lexer.NextToken();
+
+                // Return
+                return node;
+            }
+            // Is it a number?
+            if (_lexer.Token.GetTokenType() == TokenType.NUMBER)
+            {
+                var node = new TreeNodeNumber(_lexer.Token.GetValue());
+                _lexer.NextToken();
+                return node;
+            }
+
+            // Don't Understand
+            throw new Exception($"Unexpect token: {_lexer.Token.GetTokenType()}");
+        }
+        // Parse a unary operator (eg: negative/positive)
     }
 }

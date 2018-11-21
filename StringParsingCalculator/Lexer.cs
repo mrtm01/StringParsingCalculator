@@ -4,7 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//https://lukaszwrobel.pl/blog/math-parser-part-3-implementation/
+/*
+ *  Lexer implementation based on and altered to match parser.
+ *  https://lukaszwrobel.pl/blog/math-parser-part-3-implementation/
+ */
 
 namespace StringParsingCalculator
 {

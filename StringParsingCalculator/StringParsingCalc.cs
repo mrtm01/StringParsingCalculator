@@ -22,6 +22,7 @@ namespace StringParsingCalculator
 
             TreeNode t = p.ParseExpression();
             Console.WriteLine("t.Eval(): " + t.Eval());
+            Console.WriteLine("t.Eval()==50: " + (t.Eval() == 50));
         }
     }
 }

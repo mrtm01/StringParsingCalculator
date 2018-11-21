@@ -47,6 +47,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringParsingCalc.cs" />
+    <Compile Include="SyntaxException.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="TreeNode.cs" />
     <Compile Include="TreeNodeBinary.cs" />
