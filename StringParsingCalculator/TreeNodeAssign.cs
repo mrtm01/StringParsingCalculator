@@ -26,6 +26,7 @@ namespace StringParsingCalculator
             var rhsVal = _rhs.Eval(context);
 
             Console.WriteLine("Setting variable " + _lhs.GetIdentifierName() + "to :" + rhsVal);
+            context.AssignVariable(_lhs.GetIdentifierName(), rhsVal);
             // Evaluate and return
             return rhsVal;
         }

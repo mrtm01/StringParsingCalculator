@@ -62,9 +62,16 @@ namespace StringParsingCalculator
 
                 // Skip the operator
                 _lexer.NextToken();
-
+                TreeNode rhs;
                 // Parse the right hand side of the expression
-                var rhs = ParseMultiplyDivide(context);
+                if (operator_assign) //
+                {
+                    rhs = ParseAddSubtract(context);
+                }
+                else
+                {
+                    rhs = ParseMultiplyDivide(context);
+                }
 
                 if(operator_assign) //assignment operator.
                 {
@@ -106,7 +113,7 @@ namespace StringParsingCalculator
                 lhs = new TreeNodeBinary(lhs, rhs, op);
             }
         }
-
+        // Parse a unary operator (eg: negative/positive)
         TreeNode ParseUnary(IContext context)
         {
             // Positive operator is a no-op so just skip it
@@ -171,6 +178,6 @@ namespace StringParsingCalculator
             // Don't Understand
             throw new Exception($"Unexpect token: {_lexer.Token.GetTokenType()}");
         }
-        // Parse a unary operator (eg: negative/positive)
+
     }
 }

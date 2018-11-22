@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace StringParsingCalculator
 {
-    public class IContext
+    public class IdentifierNotFoundException : Exception
     {
-        public double ResolveVariable(string name)
+        public IdentifierNotFoundException(string message)
+            : base(message)
         {
-            if (name.Equals("PI")) return Math.PI;
-            else return 0;
         }
     }
 }
