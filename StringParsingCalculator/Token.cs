@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace StringParsingCalculator
 {
-    public enum TokenType { NONE, NUMBER,VARIABLE, OPERATOR_ADD, OPERATOR_SUBTRACT, OPERATOR_MULTIPLY, OPERATOR_DIVIDE, OPERATOR_LPARENTHESIS, OPERATOR_RPARENTHESIS, ENDTOKEN }
+    public enum TokenType { NONE,
+        NUMBER,
+        VARIABLE,
+        OPERATOR_ADD,
+        OPERATOR_SUBTRACT,
+        OPERATOR_MULTIPLY,
+        OPERATOR_DIVIDE,
+        OPERATOR_LPARENTHESIS,
+        OPERATOR_RPARENTHESIS,
+        OPERATOR_ASSIGN,
+        ENDTOKEN }
 
     public class Token
     {

@@ -15,6 +15,10 @@ namespace StringParsingCalculator
     public abstract class TreeNode
     {
         public abstract double Eval(IContext context);
+        public virtual string GetIdentifierName()
+        {
+            return "NOT A VARIABLE";
+        }
     }
 
     class TreeNodeNumber : TreeNode

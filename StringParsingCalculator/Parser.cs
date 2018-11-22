@@ -20,26 +20,27 @@ namespace StringParsingCalculator
         Lexer _lexer;
 
         // Parse an entire expression and check EOF was reached
-        public TreeNode ParseExpression()
+        public TreeNode ParseExpression(IContext context)
         {
             // For the moment, all we understand is add and subtract
-            TreeNode expressionTree = ParseAddSubtract();
+            TreeNode expressionTree = ParseAddSubtract(context);
 
             // Check everything was consumed
             if (_lexer.Token.GetTokenType() != TokenType.ENDTOKEN)
-                throw new Exception("Unexpected characters at end of expression");
+                throw new Exception("Unexpected characters at end of expression: "+ _lexer.Token.GetTokenType().ToString() );
 
             return expressionTree;
         }
 
         // Parse an sequence of add/subtract operators
-        TreeNode ParseAddSubtract()
+        TreeNode ParseAddSubtract(IContext context)
         {
             // Parse the left hand side
-            var lhs = ParseMultiplyDivide();
+            var lhs = ParseMultiplyDivide(context);
 
             while (true)
             {
+                bool operator_assign = false;
                 // Work out the operator
                 Func<double, double, double> op = null;
                 if (_lexer.Token.GetTokenType() == TokenType.OPERATOR_ADD)
@@ -50,26 +51,33 @@ namespace StringParsingCalculator
                 {
                     op = (a, b) => a - b;
                 }
+                else if(_lexer.Token.GetTokenType() == TokenType.OPERATOR_ASSIGN)
+                {
+                    operator_assign = true;
+                }
 
                 // Binary operator found?
-                if (op == null)
+                if (op == null && !operator_assign)
                     return lhs;             // no
 
                 // Skip the operator
                 _lexer.NextToken();
 
                 // Parse the right hand side of the expression
-                var rhs = ParseMultiplyDivide();
+                var rhs = ParseMultiplyDivide(context);
 
-                // Create a binary node and use it as the left-hand side from now on
-                lhs = new TreeNodeBinary(lhs, rhs, op);
+                if(operator_assign) //assignment operator.
+                {
+                    lhs = new TreeNodeAssign(lhs, rhs, context);
+                }
+                else lhs = new TreeNodeBinary(lhs, rhs, op);// Create a binary node and use it as the left-hand side from now on
             }
         }
 
-        TreeNode ParseMultiplyDivide()
+        TreeNode ParseMultiplyDivide(IContext context)
         {
             // Parse the left hand side
-            var lhs = ParseUnary();
+            var lhs = ParseUnary(context);
 
             while (true)
             {
@@ -92,21 +100,21 @@ namespace StringParsingCalculator
                 _lexer.NextToken();
 
                 // Parse the right hand side of the expression
-                var rhs = ParseUnary();
+                var rhs = ParseUnary(context);
 
                 // Create a binary node and use it as the left-hand side from now on
                 lhs = new TreeNodeBinary(lhs, rhs, op);
             }
         }
 
-        TreeNode ParseUnary()
+        TreeNode ParseUnary(IContext context)
         {
             // Positive operator is a no-op so just skip it
             if (_lexer.Token.GetTokenType() == TokenType.OPERATOR_ADD)
             {
                 // Skip
                 _lexer.NextToken();
-                return ParseUnary();
+                return ParseUnary(context);
             }
 
             // Negative operator
@@ -117,18 +125,17 @@ namespace StringParsingCalculator
 
                 // Parse RHS 
                 // Note this recurses to self to support negative of a negative
-                var rhs = ParseUnary();
+                var rhs = ParseUnary(context);
 
                 // Create unary node
                 return new TreeNodeUnary(rhs, (a) => -a);
             }
 
-            return ParseLeaf();
+            return ParseLeaf(context);
         }
 
-        // Parse a leaf node
-        // (For the moment this is just a number)
-        TreeNode ParseLeaf()
+        // Parse a leaf node. Variable, number or parenthesis
+        TreeNode ParseLeaf(IContext context)
         {
             // Parenthesis?
             if (_lexer.Token.GetTokenType() == TokenType.OPERATOR_LPARENTHESIS)
@@ -137,7 +144,7 @@ namespace StringParsingCalculator
                 _lexer.NextToken();
 
                 // Parse a top-level expression
-                var node = ParseAddSubtract();
+                var node = ParseAddSubtract(context);
 
                 // Check and skip ')'
                 if (_lexer.Token.GetTokenType() != TokenType.OPERATOR_RPARENTHESIS)

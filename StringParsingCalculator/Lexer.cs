@@ -43,6 +43,10 @@ namespace StringParsingCalculator
             {
                 Token = new Token(TokenType.OPERATOR_SUBTRACT);
             }
+            else if (input[currentIndex].Equals('='))
+            {
+                Token = new Token(TokenType.OPERATOR_ASSIGN);
+            }
             else if (input[currentIndex].Equals('('))
             {
                 Token = new Token(TokenType.OPERATOR_LPARENTHESIS);

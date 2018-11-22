@@ -19,5 +19,9 @@ namespace StringParsingCalculator
         {
             return context.ResolveVariable(_identifier);
         }
+        public override string GetIdentifierName()
+        {
+            return _identifier;
+        }
     }
 }

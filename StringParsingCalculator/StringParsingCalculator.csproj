@@ -51,6 +51,7 @@
     <Compile Include="SyntaxException.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="TreeNode.cs" />
+    <Compile Include="TreeNodeAssign.cs" />
     <Compile Include="TreeNodeBinary.cs" />
     <Compile Include="TreeNodeUnary.cs" />
     <Compile Include="TreeNodeVariable.cs" />
