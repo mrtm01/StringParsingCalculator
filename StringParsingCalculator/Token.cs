@@ -6,14 +6,22 @@ using System.Threading.Tasks;
 
 namespace StringParsingCalculator
 {
-    public enum TokenType { NONE, NUMBER, OPERATOR_ADD, OPERATOR_SUBTRACT, OPERATOR_MULTIPLY, OPERATOR_DIVIDE, OPERATOR_LPARENTHESIS, OPERATOR_RPARENTHESIS, ENDTOKEN }
+    public enum TokenType { NONE, NUMBER,VARIABLE, OPERATOR_ADD, OPERATOR_SUBTRACT, OPERATOR_MULTIPLY, OPERATOR_DIVIDE, OPERATOR_LPARENTHESIS, OPERATOR_RPARENTHESIS, ENDTOKEN }
 
     public class Token
     {
+        private double _value;
+        private TokenType _type;
+        private string _identifier;
         public Token(double value)
         {
-            type = TokenType.NUMBER;
-            this.value = value;
+            _type = TokenType.NUMBER;
+            _value = value;
+        }
+        public Token(string identifierName)
+        {
+            _type = TokenType.VARIABLE;
+            _identifier = identifierName;
         }
         public Token(TokenType t)
         {
@@ -21,24 +29,33 @@ namespace StringParsingCalculator
             {
                 throw new System.ArgumentException("Can not create Token Object with TokenType TokenType.NUMBER. Use Token(double).");
             }
-            type = t;
+            else if(t==TokenType.VARIABLE)
+            {
+                throw new System.ArgumentException("Can not create Token Object with TokenType TokenType.VARIABLE. Use Token(string).");
+            }
+            _type = t;
         }
-        public TokenType GetTokenType() { return type; }
+        public TokenType GetTokenType() { return _type; }
         public double GetValue()
         {
-            if (type == TokenType.NUMBER)
-                return value;
+            if (_type == TokenType.NUMBER)
+                return _value;
             else throw new Exception("Token not of type number. Can't return value.");
+        }
+        public string GetIdentifierName()
+        {
+            if (_type == TokenType.VARIABLE) return _identifier;
+            else throw new Exception("Token of type " + _type.ToString() + "Has no IdentifierName");
         }
         public override string ToString()
         {
-            switch(type)
+            switch(_type)
             {
                 case TokenType.NONE:
                     return "Token of type None";
                     break;
                 case TokenType.NUMBER:
-                    return value.ToString();
+                    return _value.ToString();
                     break;
                 case TokenType.OPERATOR_ADD:
                     return "Operator +";
@@ -64,7 +81,6 @@ namespace StringParsingCalculator
             }
         }
 
-        private double value;
-        private TokenType type;
+
     }
 }

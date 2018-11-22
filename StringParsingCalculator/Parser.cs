@@ -51,7 +51,6 @@ namespace StringParsingCalculator
                     op = (a, b) => a - b;
                 }
 
-
                 // Binary operator found?
                 if (op == null)
                     return lhs;             // no
@@ -126,6 +125,7 @@ namespace StringParsingCalculator
 
             return ParseLeaf();
         }
+
         // Parse a leaf node
         // (For the moment this is just a number)
         TreeNode ParseLeaf()
@@ -151,6 +151,12 @@ namespace StringParsingCalculator
             if (_lexer.Token.GetTokenType() == TokenType.NUMBER)
             {
                 var node = new TreeNodeNumber(_lexer.Token.GetValue());
+                _lexer.NextToken();
+                return node;
+            }
+            if(_lexer.Token.GetTokenType() == TokenType.VARIABLE)
+            {
+                var node = new TreeNodeVariable(_lexer.Token.GetIdentifierName());
                 _lexer.NextToken();
                 return node;
             }

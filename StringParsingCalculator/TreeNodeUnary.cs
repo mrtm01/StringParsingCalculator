@@ -20,10 +20,10 @@ namespace StringParsingCalculator
         TreeNode _rhs;                              // Right hand side of the operation
         Func<double, double> _op;               // The callback operator
 
-        public override double Eval()
+        public override double Eval(IContext context)
         {
             // Evaluate RHS
-            var rhsVal = _rhs.Eval();
+            var rhsVal = _rhs.Eval(context);
 
             // Evaluate and return
             var result = _op(rhsVal);

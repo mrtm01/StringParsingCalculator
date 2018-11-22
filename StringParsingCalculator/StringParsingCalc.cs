@@ -11,18 +11,21 @@ namespace StringParsingCalculator
         public StringParsingCalc(string input)
         {
             /*Lexer l = new Lexer(input);
-            l.NextToken();
-            while (l.Token.GetTokenType() != TokenType.ENDTOKEN)
+
+            while(true)
             {
-                Console.WriteLine("Found token: " + l.Token.ToString());
+                Console.WriteLine("Lexer found: " + l.Token.GetTokenType().ToString());
+                if (l.Token.GetTokenType() == TokenType.VARIABLE) Console.WriteLine("Identifier name: " + l.Token.GetIdentifierName());
+                if (l.Token.GetTokenType() == TokenType.ENDTOKEN) break;
                 l.NextToken();
             }*/
 
+            IContext globalContext = new IContext();
             Parser p = new Parser(new Lexer(input));
 
             TreeNode t = p.ParseExpression();
-            Console.WriteLine("t.Eval(): " + t.Eval());
-            Console.WriteLine("t.Eval()==50: " + (t.Eval() == 50));
+            Console.WriteLine("t.Eval(): " + t.Eval(globalContext));
+            
         }
     }
 }

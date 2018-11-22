@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IContext.cs" />
     <Compile Include="Lexer.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Program.cs" />
@@ -52,6 +53,7 @@
     <Compile Include="TreeNode.cs" />
     <Compile Include="TreeNodeBinary.cs" />
     <Compile Include="TreeNodeUnary.cs" />
+    <Compile Include="TreeNodeVariable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

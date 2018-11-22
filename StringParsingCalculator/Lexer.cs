@@ -19,7 +19,7 @@ namespace StringParsingCalculator
             this.input = input;
             NextToken();
         }
-        private char _decimalSeparator = ',';
+        private readonly char _decimalSeparator = ',';
 
         public Token Token { get; private set; }
 
@@ -52,17 +52,29 @@ namespace StringParsingCalculator
                 Token = new Token(TokenType.OPERATOR_RPARENTHESIS);
             }
 
-            else if ( isDigitOrDecimalPoint(input[currentIndex].ToString() ))
+            else if ( IsDigitOrDecimalPoint(input[currentIndex].ToString() ))
             {
                 int start = currentIndex;
                 while (currentIndex < input.Length - 1)
                 {
-                    if (isDigitOrDecimalPoint(input[currentIndex+1].ToString()) ) currentIndex++;
+                    if (IsDigitOrDecimalPoint(input[currentIndex+1].ToString()) ) currentIndex++;
                     else break;
                 }
                 double value = Convert.ToDouble(input.Substring(start, currentIndex - start+1));
                 Token = new Token(value);
             }
+            else if (IsValidIdentifierChar(input[currentIndex].ToString()))
+            {
+                int start = currentIndex;
+                while (currentIndex < input.Length - 1)
+                {
+                    if (IsValidIdentifierChar(input[currentIndex + 1].ToString())) currentIndex++;
+                    else break;
+                }
+                string name = input.Substring(start, currentIndex - start + 1);
+                Token = new Token(name);
+            }
+
             else
             {
                 Token = new Token(TokenType.NONE); //should not reach this code.
@@ -74,9 +86,14 @@ namespace StringParsingCalculator
         private int currentIndex;
  
 
-        private bool isDigitOrDecimalPoint(string s)
+        private bool IsDigitOrDecimalPoint(string s)
         {
             if (s[0].ToString().All(Char.IsDigit) || s[0].Equals(_decimalSeparator) ) return true;
+            else return false;
+        }
+        private bool IsValidIdentifierChar(string s)
+        {
+            if (s[0].ToString().All(Char.IsLetter) ) return true;
             else return false;
         }
     }

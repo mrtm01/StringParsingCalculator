@@ -14,7 +14,7 @@ namespace StringParsingCalculator
 {
     public abstract class TreeNode
     {
-        public abstract double Eval();
+        public abstract double Eval(IContext context);
     }
 
     class TreeNodeNumber : TreeNode
@@ -26,7 +26,7 @@ namespace StringParsingCalculator
 
         double _number;
 
-        public override double Eval()
+        public override double Eval(IContext context)
         {
             return _number;
         }
