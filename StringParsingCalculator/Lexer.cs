@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
 
 /*
  *  Lexer implementation based on and altered to match parser.
@@ -19,7 +20,7 @@ namespace StringParsingCalculator
             this.input = input;
             NextToken();
         }
-        private readonly char _decimalSeparator = ',';
+        private readonly char _decimalSeparator = '.';
 
         public Token Token { get; private set; }
 
@@ -64,7 +65,7 @@ namespace StringParsingCalculator
                     if (IsDigitOrDecimalPoint(input[currentIndex+1].ToString()) ) currentIndex++;
                     else break;
                 }
-                double value = Convert.ToDouble(input.Substring(start, currentIndex - start+1));
+                double value = StringToDouble(input.Substring(start, currentIndex - start+1));
                 Token = new Token(value);
             }
             else if (IsValidIdentifierChar(input[currentIndex].ToString()))
@@ -99,6 +100,14 @@ namespace StringParsingCalculator
         {
             if (s[0].ToString().All(Char.IsLetter) ) return true;
             else return false;
+        }
+
+        private double StringToDouble(string input)
+        {
+            string internationalized = input.Replace(_decimalSeparator.ToString(),
+                CultureInfo.CurrentUICulture.NumberFormat.NumberDecimalSeparator);
+            //Console.WriteLine("Converting string: " + internationalized + " to double");
+            return Convert.ToDouble(internationalized);
         }
     }
 }

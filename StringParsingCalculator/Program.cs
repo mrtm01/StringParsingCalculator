@@ -10,7 +10,7 @@ namespace StringParsingCalculator
     {
         static void Main(string[] args)
         {
-            string expression = "minVariabel=(1+PI)*(5+5)";
+            string expression = "-7.9";
             StringParsingCalc sp = new StringParsingCalc(expression);
 
             Console.ReadLine();

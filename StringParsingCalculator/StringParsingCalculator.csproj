@@ -52,11 +52,11 @@
     <Compile Include="StringParsingCalc.cs" />
     <Compile Include="Exceptions\SyntaxException.cs" />
     <Compile Include="Token.cs" />
-    <Compile Include="TreeNode.cs" />
-    <Compile Include="TreeNodeAssign.cs" />
-    <Compile Include="TreeNodeBinary.cs" />
-    <Compile Include="TreeNodeUnary.cs" />
-    <Compile Include="TreeNodeVariable.cs" />
+    <Compile Include="TreeNode\TreeNode.cs" />
+    <Compile Include="TreeNode\TreeNodeAssign.cs" />
+    <Compile Include="TreeNode\TreeNodeBinary.cs" />
+    <Compile Include="TreeNode\TreeNodeUnary.cs" />
+    <Compile Include="TreeNode\TreeNodeVariable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

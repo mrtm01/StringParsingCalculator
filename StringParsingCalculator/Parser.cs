@@ -11,7 +11,7 @@ namespace StringParsingCalculator
 {
     public class Parser
     {
-        // Constructor - just store the tokenizer
+        // Constructor - just store the lexer
         public Parser(Lexer lexer)
         {
             _lexer = lexer;
@@ -22,7 +22,11 @@ namespace StringParsingCalculator
         // Parse an entire expression and check EOF was reached
         public TreeNode ParseExpression(IContext context)
         {
-            // For the moment, all we understand is add and subtract
+            if(_lexer.Token.GetTokenType() == TokenType.ENDTOKEN) //Empty expression.
+            {
+                return new TreeNodeNumber(0);
+            }
+
             TreeNode expressionTree = ParseAddSubtract(context);
 
             // Check everything was consumed
@@ -56,9 +60,9 @@ namespace StringParsingCalculator
                     operator_assign = true;
                 }
 
-                // Binary operator found?
+                // Binary operator not found?
                 if (op == null && !operator_assign)
-                    return lhs;             // no
+                    return lhs;             // not found
 
                 // Skip the operator
                 _lexer.NextToken();
@@ -67,17 +71,13 @@ namespace StringParsingCalculator
                 if (operator_assign) //
                 {
                     rhs = ParseAddSubtract(context);
+                    lhs = new TreeNodeAssign(lhs, rhs, context);
                 }
                 else
                 {
                     rhs = ParseMultiplyDivide(context);
+                    lhs = new TreeNodeBinary(lhs, rhs, op);// Create a binary node and use it as the left-hand side from now on
                 }
-
-                if(operator_assign) //assignment operator.
-                {
-                    lhs = new TreeNodeAssign(lhs, rhs, context);
-                }
-                else lhs = new TreeNodeBinary(lhs, rhs, op);// Create a binary node and use it as the left-hand side from now on
             }
         }
 
@@ -99,9 +99,9 @@ namespace StringParsingCalculator
                     op = (a, b) => a / b;
                 }
 
-                // Binary operator found?
+                // Binary operator not found?
                 if (op == null)
-                    return lhs;             // no
+                    return lhs;             // not found
 
                 // Skip the operator
                 _lexer.NextToken();

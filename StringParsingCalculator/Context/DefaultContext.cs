@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StringParsingCalculator
 {
-    class DefaultContext : IContext
+    public class DefaultContext : IContext
     {
         private Dictionary<string, double> _constants;
         private Dictionary<string, double> _variables;
@@ -30,7 +30,7 @@ namespace StringParsingCalculator
         {
             if (_constants.ContainsKey(name)) //can't have variable with same name as constant
             {
-                throw new SyntaxException("Identifier " + name + " already defined as constans");
+                throw new SyntaxException("Identifier " + name + " already defined as constant.");
             }
             else if (_variables.ContainsKey(name))
             {

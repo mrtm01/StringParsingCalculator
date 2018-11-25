@@ -10,8 +10,8 @@ namespace StringParsingCalculator
     {
         public StringParsingCalc(string input)
         {
-            string exp1 = "variabel=PI*2";
-            string exp2 = "variabel/2";
+            string exp1 = "10/0";
+            //string exp2 = "variabel/2";
             //TestLexer(input);
             IContext globalContext = new DefaultContext();
             Parser p = new Parser(new Lexer(exp1));
@@ -19,9 +19,9 @@ namespace StringParsingCalculator
             TreeNode t = p.ParseExpression(globalContext);
             Console.WriteLine("t.Eval(): " + t.Eval(globalContext));
 
-            p = new Parser(new Lexer(exp2));
-            t = p.ParseExpression(globalContext);
-            Console.WriteLine("t.Eval(): " + t.Eval(globalContext));
+            //p = new Parser(new Lexer(exp2));
+            //t = p.ParseExpression(globalContext);
+            //Console.WriteLine("t.Eval(): " + t.Eval(globalContext));
         }
         private void TestLexer(string input)
         {
