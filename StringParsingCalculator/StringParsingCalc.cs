@@ -10,7 +10,7 @@ namespace StringParsingCalculator
     {
         public StringParsingCalc(string input)
         {
-            string exp1 = "10/0";
+            string exp1 = "pow(10;3)";
             //string exp2 = "variabel/2";
             //TestLexer(input);
             IContext globalContext = new DefaultContext();

@@ -9,6 +9,7 @@ namespace StringParsingCalculator
     public enum TokenType { NONE,
         NUMBER,
         VARIABLE,
+        FUNCTION,
         OPERATOR_ADD,
         OPERATOR_SUBTRACT,
         OPERATOR_MULTIPLY,
@@ -23,6 +24,8 @@ namespace StringParsingCalculator
         private double _value;
         private TokenType _type;
         private string _identifier;
+        private List<string> _arguments;
+
         public Token(double value)
         {
             _type = TokenType.NUMBER;
@@ -32,6 +35,17 @@ namespace StringParsingCalculator
         {
             _type = TokenType.VARIABLE;
             _identifier = identifierName;
+        }
+        public Token(string identifierName, List<string> arguments)
+        {
+            _type = TokenType.FUNCTION;
+            _identifier = identifierName;
+            _arguments = arguments;
+        }
+
+        public List<string> GetFunctionArguments()
+        {
+            return _arguments;
         }
         public Token(TokenType t)
         {
@@ -54,7 +68,7 @@ namespace StringParsingCalculator
         }
         public string GetIdentifierName()
         {
-            if (_type == TokenType.VARIABLE) return _identifier;
+            if (_type == TokenType.VARIABLE || _type == TokenType.FUNCTION) return _identifier;
             else throw new Exception("Token of type " + _type.ToString() + "Has no IdentifierName");
         }
         public override string ToString()
@@ -63,31 +77,35 @@ namespace StringParsingCalculator
             {
                 case TokenType.NONE:
                     return "Token of type None";
-                    break;
+                    //break;
                 case TokenType.NUMBER:
                     return _value.ToString();
-                    break;
+                    //break;
                 case TokenType.OPERATOR_ADD:
                     return "Operator +";
-                    break;
+                    //break;
                 case TokenType.OPERATOR_DIVIDE:
                     return "Operator /";
-                    break;
+                    //break;
                 case TokenType.OPERATOR_LPARENTHESIS:
                     return "Operator (";
-                    break;
+                    //break;
                 case TokenType.OPERATOR_RPARENTHESIS:
                     return "Operator )";
-                    break;
+                    //break;
                 case TokenType.OPERATOR_MULTIPLY:
                     return "Operator *";
-                    break;
+                    //break;
                 case TokenType.OPERATOR_SUBTRACT:
                     return "Operator -";
-                    break;
+                //break;
+                case TokenType.FUNCTION:
+                    return "Function";
+                case TokenType.VARIABLE:
+                    return "Variable";
                 default:
                     return "INVALID TOKEN";
-                    break;
+                    //break;
             }
         }
 

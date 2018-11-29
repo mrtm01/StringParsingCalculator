@@ -20,19 +20,4 @@ namespace StringParsingCalculator
             return "NOT A VARIABLE";
         }
     }
-
-    class TreeNodeNumber : TreeNode
-    {
-        public TreeNodeNumber(double number)
-        {
-            _number = number;
-        }
-
-        double _number;
-
-        public override double Eval(IContext context)
-        {
-            return _number;
-        }
-    }
 }

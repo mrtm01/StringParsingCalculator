@@ -7,10 +7,15 @@ using System.Threading.Tasks;
  * Parser very much based on:
  * https://medium.com/@CantabileApp/writing-a-simple-math-expression-engine-in-c-d414de18d4ce
  */
+
+
 namespace StringParsingCalculator
 {
     public class Parser
     {
+
+        //DEBUG
+        static int parserPass = 0;
         // Constructor - just store the lexer
         public Parser(Lexer lexer)
         {
@@ -22,6 +27,8 @@ namespace StringParsingCalculator
         // Parse an entire expression and check EOF was reached
         public TreeNode ParseExpression(IContext context)
         {
+            parserPass++;
+            Console.WriteLine("Parser pass: " + parserPass);
             if(_lexer.Token.GetTokenType() == TokenType.ENDTOKEN) //Empty expression.
             {
                 return new TreeNodeNumber(0);
@@ -31,7 +38,7 @@ namespace StringParsingCalculator
 
             // Check everything was consumed
             if (_lexer.Token.GetTokenType() != TokenType.ENDTOKEN)
-                throw new Exception("Unexpected characters at end of expression: "+ _lexer.Token.GetTokenType().ToString() );
+                throw new SyntaxException("Unexpected characters at end of expression: "+ _lexer.Token.GetTokenType().ToString() );
 
             return expressionTree;
         }
@@ -171,6 +178,18 @@ namespace StringParsingCalculator
             if(_lexer.Token.GetTokenType() == TokenType.VARIABLE)
             {
                 var node = new TreeNodeVariable(_lexer.Token.GetIdentifierName());
+                _lexer.NextToken();
+                return node;
+            }
+            if(_lexer.Token.GetTokenType() == TokenType.FUNCTION)
+            {
+                List<double> arguments = new List<double>();
+                foreach(string s in _lexer.Token.GetFunctionArguments())
+                {
+                    Parser p = new Parser(new Lexer(s));
+                    arguments.Add(p.ParseExpression(context).Eval(context));
+                }
+                var node = new TreeNodeFunction(_lexer.Token.GetIdentifierName(), arguments);
                 _lexer.NextToken();
                 return node;
             }

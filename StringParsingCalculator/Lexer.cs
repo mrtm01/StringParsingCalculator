@@ -68,7 +68,8 @@ namespace StringParsingCalculator
                 double value = StringToDouble(input.Substring(start, currentIndex - start+1));
                 Token = new Token(value);
             }
-            else if (IsValidIdentifierChar(input[currentIndex].ToString()))
+
+            else if (IsValidIdentifierChar(input[currentIndex].ToString())) //found variable or function
             {
                 int start = currentIndex;
                 while (currentIndex < input.Length - 1)
@@ -77,7 +78,37 @@ namespace StringParsingCalculator
                     else break;
                 }
                 string name = input.Substring(start, currentIndex - start + 1);
-                Token = new Token(name);
+
+                if (currentIndex +1 < input.Length && input[currentIndex + 1] == '(')
+                {
+                    currentIndex+=2; //increment past '('
+                    start = currentIndex;
+                    int parenthesisCount = 1;
+                    while (currentIndex < input.Length-1)
+                    {
+                        if (input[currentIndex] == '(')
+                        {
+                            parenthesisCount++;
+                            Console.WriteLine("Found open parenthesis. Count is now: " + parenthesisCount);
+                        }
+
+                        if (input[currentIndex] == ')')
+                        {
+                            parenthesisCount--;
+                            if (parenthesisCount == 0) break;
+                            Console.WriteLine("Found close parenthesis. Count is now: " + parenthesisCount);
+                        }
+
+                        currentIndex++;
+                    }
+                    List<string> arguments = new List<string>( input.Substring(start, currentIndex - start).Split(';') );
+                    Token = new Token(name, arguments);
+                    Console.WriteLine("Function: " + name + " found. Arguments: "); //DEBUG
+                    foreach (string s in arguments) Console.Write(s + ", ");//DEBUG: found function
+                    Console.WriteLine(); //DEBUG
+                }
+
+                else Token = new Token(name);
             }
 
             else

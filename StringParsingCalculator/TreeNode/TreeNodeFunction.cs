@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace StringParsingCalculator
 {
-    class TreeNodeVariable : TreeNode
+    public class TreeNodeFunction : TreeNode
     {
-        public TreeNodeVariable(string identifier)
+
+        public TreeNodeFunction(string identifier, List<double> arguments)
         {
             _identifier = identifier;
+            _arguments = arguments;
         }
 
         string _identifier;
-        
+        List<double> _arguments;
 
         public override double Eval(IContext context)
         {
-            return context.ResolveVariable(_identifier);
+            return context.EvaluateFunction(_identifier,_arguments);
         }
         public override string GetIdentifierName()
         {

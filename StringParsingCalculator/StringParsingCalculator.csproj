@@ -55,6 +55,8 @@
     <Compile Include="TreeNode\TreeNode.cs" />
     <Compile Include="TreeNode\TreeNodeAssign.cs" />
     <Compile Include="TreeNode\TreeNodeBinary.cs" />
+    <Compile Include="TreeNode\TreeNodeFunction.cs" />
+    <Compile Include="TreeNode\TreeNodeNumber.cs" />
     <Compile Include="TreeNode\TreeNodeUnary.cs" />
     <Compile Include="TreeNode\TreeNodeVariable.cs" />
   </ItemGroup>

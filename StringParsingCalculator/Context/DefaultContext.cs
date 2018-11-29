@@ -8,10 +8,13 @@ namespace StringParsingCalculator
 {
     public class DefaultContext : IContext
     {
+        public bool UseRadians { get; set; }
+
         private Dictionary<string, double> _constants;
         private Dictionary<string, double> _variables;
         public DefaultContext()
         {
+            UseRadians = false;
             _constants = new Dictionary<string, double>
             {
                 { "PI",Math.PI }
@@ -38,7 +41,8 @@ namespace StringParsingCalculator
             }
             else _variables.Add(name, value);
         }
-        public void Dump()
+
+        public void DumpCurrentIdentifiers()
         {
             foreach(KeyValuePair<string,double> kp in _constants)
             {
@@ -48,6 +52,65 @@ namespace StringParsingCalculator
             {
                 Console.WriteLine("key: " + kp.Key + " value: " + kp.Value);
             }
+        }
+
+        public double EvaluateFunction(string name, List<double> arguments)
+        {
+            Console.WriteLine("Evaluate function: " + name.ToLower() + " argument 0: "+ arguments[0]);
+            name = name.ToLower();
+            switch (name)
+            {
+                case "sqrt":
+                    CheckArguments(1, ref arguments, name);
+                    return Math.Sqrt(arguments[0]);
+                case "pow":
+                    CheckArguments(2, ref arguments, name);
+                    return Math.Pow(arguments[0], arguments[1]);
+
+                    //Trig
+                case "sin":
+                    CheckArguments(1, ref arguments, name);
+                    if (UseRadians) return Math.Sin(arguments[0]);
+                    else return Math.Sin(DegreesToRadians(arguments[0]) );
+                case "cos":
+                    CheckArguments(1, ref arguments, name);
+                    if (UseRadians) return Math.Cos(arguments[0]);
+                    else return Math.Cos(DegreesToRadians(arguments[0]));
+                case "tan":
+                    CheckArguments(1, ref arguments, name);
+                    if (UseRadians) return Math.Tan(arguments[0]);
+                    else return Math.Tan(DegreesToRadians(arguments[0]) );
+
+                    //Reverse Trig
+                case "asin":
+                    CheckArguments(1, ref arguments, name);
+                    if (UseRadians) return Math.Asin(arguments[0]);
+                    else return RadiansToDegrees(Math.Asin(arguments[0]));
+                case "acos":
+                    CheckArguments(1, ref arguments, name);
+                    if (UseRadians) return Math.Acos(arguments[0]);
+                    else return RadiansToDegrees(Math.Acos(arguments[0]));
+                case "atan":
+                    CheckArguments(1, ref arguments, name);
+                    if (UseRadians) return Math.Atan(arguments[0]);
+                    else return RadiansToDegrees(Math.Atan(arguments[0]));
+
+
+                default:
+                    throw new SyntaxException("Function not found: " + name);
+            }
+        }
+        private void CheckArguments(int RequiredArguments,ref List<double> arguments, string FunctionName)
+        {
+            if (arguments.Count() < RequiredArguments) throw new SyntaxException("Too few arguments to function " + FunctionName);
+        }
+        private double DegreesToRadians(double degrees)
+        {
+            return degrees * Math.PI / 180;
+        }
+        private double RadiansToDegrees(double radians)
+        {
+            return radians * 180 / Math.PI;
         }
     }
 }

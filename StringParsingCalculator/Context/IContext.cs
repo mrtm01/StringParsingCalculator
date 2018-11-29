@@ -8,8 +8,10 @@ namespace StringParsingCalculator
 {
     public interface IContext
     {
+        bool UseRadians { get; set; }
         double ResolveVariable(string name);
         void AssignVariable(string name, double value);
-        void Dump();
+        double EvaluateFunction(string name, List<double> parameters);
+        void DumpCurrentIdentifiers();
     }
 }
