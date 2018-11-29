@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringParsingCalculator", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringParsingCalcTests", "StringParsingCalcTests\StringParsingCalcTests.csproj", "{87932FAE-6C1F-4AAE-8F2F-681A7F75AC35}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUICalculator", "GUICalculator\GUICalculator.csproj", "{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{87932FAE-6C1F-4AAE-8F2F-681A7F75AC35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87932FAE-6C1F-4AAE-8F2F-681A7F75AC35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87932FAE-6C1F-4AAE-8F2F-681A7F75AC35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

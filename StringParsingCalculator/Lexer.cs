@@ -20,7 +20,7 @@ namespace StringParsingCalculator
             this.input = input;
             NextToken();
         }
-        private readonly char _decimalSeparator = '.';
+        private readonly char _decimalSeparator = ',';
 
         public Token Token { get; private set; }
 

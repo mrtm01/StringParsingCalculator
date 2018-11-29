@@ -10,14 +10,15 @@ namespace StringParsingCalculator
     {
         public StringParsingCalc(string input)
         {
-            string exp1 = "pow(10;3)";
+            string exp1 = "100*0,5";
             //string exp2 = "variabel/2";
             //TestLexer(input);
             IContext globalContext = new DefaultContext();
             Parser p = new Parser(new Lexer(exp1));
 
             TreeNode t = p.ParseExpression(globalContext);
-            Console.WriteLine("t.Eval(): " + t.Eval(globalContext));
+            double value = t.Eval(globalContext);
+            Console.WriteLine("t.Eval(): " + value);
 
             //p = new Parser(new Lexer(exp2));
             //t = p.ParseExpression(globalContext);

@@ -44,20 +44,18 @@ namespace StringParsingCalculator.Tests
             Parser p = new Parser(new Lexer(input));
             TreeNode t = p.ParseExpression(context);
 
-            Assert.AreEqual(t.Eval(context), 3.9766);
+            Assert.AreEqual(3.9766, t.Eval(context));
         }
-        /* THIS RETURNS INFINITY.
         [TestMethod()]
-        [ExpectedException(typeof(DivideByZeroException))]
-        public void ParseDivideByZeroExpression()
+        public void ParseSinExpression()
         {
             IContext context = new DefaultContext();
 
-            string input = "10 / 0";
+            string input = "sin(30)";
             Parser p = new Parser(new Lexer(input));
             TreeNode t = p.ParseExpression(context);
-            t.Eval(context);
+            Assert.AreEqual(Math.Sin(30*Math.PI/180), t.Eval(context));
         }
-        */
+
     }
 }
