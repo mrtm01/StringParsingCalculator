@@ -42,16 +42,28 @@ namespace StringParsingCalculator
             else _variables.Add(name, value);
         }
 
-        public void DumpCurrentIdentifiers()
+        public string GetCurrentIdentifiers()
         {
-            foreach(KeyValuePair<string,double> kp in _constants)
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Constants:\n");
+            foreach (KeyValuePair<string,double> kp in _constants)
             {
-                Console.WriteLine("key: " + kp.Key + " value: " + kp.Value);
+                //Console.WriteLine("key: " + kp.Key + " value: " + kp.Value);
+                sb.Append(kp.Key);
+                sb.Append(" = ");
+                sb.Append(kp.Value);
+                sb.Append("\n");
             }
+            sb.Append("Variables:\n");
             foreach (KeyValuePair<string, double> kp in _variables)
             {
-                Console.WriteLine("key: " + kp.Key + " value: " + kp.Value);
+                sb.Append(kp.Key);
+                sb.Append(" = ");
+                sb.Append(kp.Value);
+                sb.Append("\n");
+                //Console.WriteLine("key: " + kp.Key + " value: " + kp.Value);
             }
+            return sb.ToString();
         }
 
         public double EvaluateFunction(string name, List<double> arguments)

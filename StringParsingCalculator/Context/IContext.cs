@@ -12,6 +12,6 @@ namespace StringParsingCalculator
         double ResolveVariable(string name);
         void AssignVariable(string name, double value);
         double EvaluateFunction(string name, List<double> parameters);
-        void DumpCurrentIdentifiers();
+        string GetCurrentIdentifiers();
     }
 }

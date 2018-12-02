@@ -15,7 +15,7 @@ namespace StringParsingCalculator
     {
 
         //DEBUG
-        static int parserPass = 0;
+        //static int parserPass = 0;
         // Constructor - just store the lexer
         public Parser(Lexer lexer)
         {
@@ -27,8 +27,8 @@ namespace StringParsingCalculator
         // Parse an entire expression and check EOF was reached
         public TreeNode ParseExpression(IContext context)
         {
-            parserPass++;
-            Console.WriteLine("Parser pass: " + parserPass);
+            //parserPass++;
+            //Console.WriteLine("Parser pass: " + parserPass);
             if(_lexer.Token.GetTokenType() == TokenType.ENDTOKEN) //Empty expression.
             {
                 return new TreeNodeNumber(0);
@@ -195,7 +195,7 @@ namespace StringParsingCalculator
             }
 
             // Don't Understand
-            throw new Exception($"Unexpect token: {_lexer.Token.GetTokenType()}");
+            throw new SyntaxException($"Unexpect token: {_lexer.Token.GetTokenType()} at index {_lexer.GetCurrentIndex()} ");
         }
 
     }

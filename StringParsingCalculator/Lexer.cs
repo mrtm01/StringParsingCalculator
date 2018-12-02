@@ -23,7 +23,8 @@ namespace StringParsingCalculator
         private readonly char _decimalSeparator = ',';
 
         public Token Token { get; private set; }
-
+        public int GetCurrentIndex() { return currentIndex; }
+        public char GetCurrentChar() { return input[currentIndex-1]; }
         public void NextToken()
         {
             while (currentIndex < input.Length && input[currentIndex].Equals(' ')) currentIndex++; //increment past any whitespace.

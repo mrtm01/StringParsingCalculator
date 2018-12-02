@@ -47,6 +47,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculatorHandeler.cs" />
+    <Compile Include="CommandHistory.cs" />
+    <Compile Include="HistoryDisplay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HistoryDisplay.Designer.cs">
+      <DependentUpon>HistoryDisplay.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
