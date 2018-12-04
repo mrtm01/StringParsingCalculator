@@ -15,6 +15,12 @@ namespace GUICalculator
         private Parser _parser;
         private readonly IContext _context;
         private HistoryDisplay _historyDisplay;
+        private const string _helpText = 
+            "To assign a variable use name=expression\n" +
+            "Use arrow-keys for command history\n" +
+            "List will list currently available identifiers and their values\n" +
+            "last is a special variable that contains the value of the last expression\n"+
+            "Use clear to clear the history-window.";
         public CalculatorHandeler(System.Windows.Forms.TextBox textBox, MainForm mainForm, HistoryDisplay historyDisplay)
         {
             _context = new DefaultContext();
@@ -23,7 +29,7 @@ namespace GUICalculator
             _historyDisplay = historyDisplay;
             _commandHistory = new CommandHistory();
         }
-        /*
+        /* Evaluates expression in textbox and changes textbox text to result.
          * Returns true on success and false on any error.
          */
         public bool GetResult()
@@ -56,15 +62,20 @@ namespace GUICalculator
             switch(s.ToLower())
             {
                 case "clear":
-                    _historyDisplay.Clear();
-                    _tb.Text = "";
+                    if(_historyDisplay.IsInMessageMode() ) _historyDisplay.ExitMessageMode();
+                    else _historyDisplay.Clear();
+                    _tb.Clear();
                     return true;
                 case "list":
-                    _tb.Text = "";
+                    _tb.Clear();
                     _historyDisplay.Text = _context.GetCurrentIdentifiers();
                     _historyDisplay.EnterMessageMode();
                     return true;
-                    
+                case "help":
+                    _tb.Clear();
+                    _historyDisplay.Text = _helpText;
+                    _historyDisplay.EnterMessageMode();
+                    return true;
                 default:
                     return false;
             }
@@ -85,6 +96,7 @@ namespace GUICalculator
                 cursorpos += s.Length;
             }
             AdjustCursor(cursorpos);
+            _tb.Focus();
         }
         public void AdjustCursor(int pos)
         {

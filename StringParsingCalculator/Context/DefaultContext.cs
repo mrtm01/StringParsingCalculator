@@ -18,7 +18,9 @@ namespace StringParsingCalculator
             _constants = new Dictionary<string, double>
             {
                 { "PI",Math.PI }
-                //,{"MEANINGOFLIFE",42 }
+                ,{"E",Math.E }
+                ,{"MEANINGOFLIFE",42 }
+                
             };
             _variables = new Dictionary<string, double>();
         }
@@ -68,7 +70,7 @@ namespace StringParsingCalculator
 
         public double EvaluateFunction(string name, List<double> arguments)
         {
-            Console.WriteLine("Evaluate function: " + name.ToLower() + " argument 0: "+ arguments[0]);
+            //Console.WriteLine("Evaluate function: " + name.ToLower() + " argument 0: "+ arguments[0]);
             name = name.ToLower();
             switch (name)
             {

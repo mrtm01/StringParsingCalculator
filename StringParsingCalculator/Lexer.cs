@@ -33,6 +33,10 @@ namespace StringParsingCalculator
             {
                 Token = new Token(TokenType.OPERATOR_MULTIPLY);
             }
+            else if (input[currentIndex].Equals('^'))
+            {
+                Token = new Token(TokenType.OPERATOR_EXPONENT);
+            }
             else if (input[currentIndex].Equals('/'))
             {
                 Token = new Token(TokenType.OPERATOR_DIVIDE);
@@ -90,23 +94,23 @@ namespace StringParsingCalculator
                         if (input[currentIndex] == '(')
                         {
                             parenthesisCount++;
-                            Console.WriteLine("Found open parenthesis. Count is now: " + parenthesisCount);
+                            //Console.WriteLine("Found open parenthesis. Count is now: " + parenthesisCount);
                         }
 
                         if (input[currentIndex] == ')')
                         {
                             parenthesisCount--;
                             if (parenthesisCount == 0) break;
-                            Console.WriteLine("Found close parenthesis. Count is now: " + parenthesisCount);
+                            //Console.WriteLine("Found close parenthesis. Count is now: " + parenthesisCount);
                         }
 
                         currentIndex++;
                     }
                     List<string> arguments = new List<string>( input.Substring(start, currentIndex - start).Split(';') );
                     Token = new Token(name, arguments);
-                    Console.WriteLine("Function: " + name + " found. Arguments: "); //DEBUG
+                    //Console.WriteLine("Function: " + name + " found. Arguments: "); //DEBUG
                     foreach (string s in arguments) Console.Write(s + ", ");//DEBUG: found function
-                    Console.WriteLine(); //DEBUG
+                    //Console.WriteLine(); //DEBUG
                 }
 
                 else Token = new Token(name);

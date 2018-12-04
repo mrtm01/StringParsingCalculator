@@ -143,7 +143,7 @@ namespace GUICalculator
             _calculatorHandeler.AddSymbol("9");
         }
 
-        private void mainTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        private void MainTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -158,7 +158,7 @@ namespace GUICalculator
         }
 
 
-        private void mainTextBox_KeyDown(object sender, KeyEventArgs e)
+        private void MainTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
@@ -178,39 +178,45 @@ namespace GUICalculator
 
         }
 
-        private void sinButton_Click(object sender, EventArgs e)
+        private void SinButton_Click(object sender, EventArgs e)
         {
             _calculatorHandeler.InsertSurroundingSelection("sin(", ")");
         }
 
-        private void cosButton_Click(object sender, EventArgs e)
+        private void CosButton_Click(object sender, EventArgs e)
         {
             _calculatorHandeler.InsertSurroundingSelection("cos(", ")");
         }
 
-        private void tanButton_Click(object sender, EventArgs e)
+        private void TanButton_Click(object sender, EventArgs e)
         {
             _calculatorHandeler.InsertSurroundingSelection("tan(", ")");
         }
 
-        private void asinButton_Click(object sender, EventArgs e)
+        private void AsinButton_Click(object sender, EventArgs e)
         {
             _calculatorHandeler.InsertSurroundingSelection("asin(", ")");
         }
 
-        private void acosButton_Click(object sender, EventArgs e)
+        private void AcosButton_Click(object sender, EventArgs e)
         {
             _calculatorHandeler.InsertSurroundingSelection("acos(", ")");
         }
 
-        private void atanButton_Click(object sender, EventArgs e)
+        private void AtanButton_Click(object sender, EventArgs e)
         {
             _calculatorHandeler.InsertSurroundingSelection("atan(", ")");
         }
 
-        private void sqrtButton_Click(object sender, EventArgs e)
+        private void SqrtButton_Click(object sender, EventArgs e)
         {
             _calculatorHandeler.InsertSurroundingSelection("sqrt(", ")");
+        }
+
+        private void ExpButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.AddSymbol("^");
+
         }
     }
 }

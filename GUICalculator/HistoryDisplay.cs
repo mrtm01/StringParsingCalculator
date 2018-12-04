@@ -22,7 +22,7 @@ namespace GUICalculator
 
         public void AddLine(string s)
         {
-            _textLines.Insert(0, s);
+            _textLines.Add(s);
             this.Invalidate();
             _messageMode = false;
         }
@@ -41,20 +41,22 @@ namespace GUICalculator
             _messageMode = false;
             this.Invalidate();
         }
+        public bool IsInMessageMode()
+        {
+            return _messageMode;
+        }
         protected override void OnPaint(PaintEventArgs pe)
         {
-
             base.OnPaint(pe);
             if (!_messageMode)
             {
-                for (int i = 0; i < _textLines.Count; i++)
+                for (int i = _textLines.Count-1; i >=0; i--)
                 {
                     string s = _textLines[i];
-                    int ypos = ClientRectangle.Location.Y + ClientRectangle.Height - (i + 1) * Font.Height;
+                    int ypos = ClientRectangle.Location.Y + ClientRectangle.Height - (_textLines.Count - i ) * Font.Height;
                     if ((ypos + Font.Height) < ClientRectangle.Location.Y)
                     {
-                        break; //dont draw text out of bounds
-
+                            break; //dont draw text out of bounds
                     }
                     pe.Graphics.DrawString(s, this.Font, new SolidBrush(ForeColor), ClientRectangle.Location.X, ypos);
                 }

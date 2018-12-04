@@ -17,6 +17,7 @@ namespace StringParsingCalculator
         OPERATOR_LPARENTHESIS,
         OPERATOR_RPARENTHESIS,
         OPERATOR_ASSIGN,
+        OPERATOR_EXPONENT,
         ENDTOKEN }
 
     public class Token

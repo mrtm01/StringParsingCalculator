@@ -105,6 +105,10 @@ namespace StringParsingCalculator
                 {
                     op = (a, b) => a / b;
                 }
+                else if (_lexer.Token.GetTokenType() == TokenType.OPERATOR_EXPONENT)
+                {
+                    op = (a, b) => Math.Pow(a,b);
+                }
 
                 // Binary operator not found?
                 if (op == null)
