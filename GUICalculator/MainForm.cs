@@ -177,5 +177,40 @@ namespace GUICalculator
             }
 
         }
+
+        private void sinButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.InsertSurroundingSelection("sin(", ")");
+        }
+
+        private void cosButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.InsertSurroundingSelection("cos(", ")");
+        }
+
+        private void tanButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.InsertSurroundingSelection("tan(", ")");
+        }
+
+        private void asinButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.InsertSurroundingSelection("asin(", ")");
+        }
+
+        private void acosButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.InsertSurroundingSelection("acos(", ")");
+        }
+
+        private void atanButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.InsertSurroundingSelection("atan(", ")");
+        }
+
+        private void sqrtButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.InsertSurroundingSelection("sqrt(", ")");
+        }
     }
 }

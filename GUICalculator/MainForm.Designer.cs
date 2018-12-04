@@ -40,6 +40,13 @@
             this.btnNum8 = new System.Windows.Forms.Button();
             this.btnNum9 = new System.Windows.Forms.Button();
             this.btnNum0 = new System.Windows.Forms.Button();
+            this.sinButton = new System.Windows.Forms.Button();
+            this.cosButton = new System.Windows.Forms.Button();
+            this.tanButton = new System.Windows.Forms.Button();
+            this.asinButton = new System.Windows.Forms.Button();
+            this.acosButton = new System.Windows.Forms.Button();
+            this.atanButton = new System.Windows.Forms.Button();
+            this.sqrtButton = new System.Windows.Forms.Button();
             this.historyDisplay1 = new GUICalculator.HistoryDisplay();
             this.SuspendLayout();
             // 
@@ -116,7 +123,7 @@
             // 
             this.btnNum6.Location = new System.Drawing.Point(175, 301);
             this.btnNum6.Name = "btnNum6";
-            this.btnNum6.Size = new System.Drawing.Size(75, 49);
+            this.btnNum6.Size = new System.Drawing.Size(74, 49);
             this.btnNum6.TabIndex = 7;
             this.btnNum6.Text = "6";
             this.btnNum6.UseVisualStyleBackColor = true;
@@ -162,8 +169,79 @@
             this.btnNum0.UseVisualStyleBackColor = true;
             this.btnNum0.Click += new System.EventHandler(this.BtnNum0_Click);
             // 
+            // sinButton
+            // 
+            this.sinButton.Location = new System.Drawing.Point(256, 247);
+            this.sinButton.Name = "sinButton";
+            this.sinButton.Size = new System.Drawing.Size(75, 25);
+            this.sinButton.TabIndex = 13;
+            this.sinButton.Text = "sin()";
+            this.sinButton.UseVisualStyleBackColor = true;
+            this.sinButton.Click += new System.EventHandler(this.sinButton_Click);
+            // 
+            // cosButton
+            // 
+            this.cosButton.Location = new System.Drawing.Point(256, 272);
+            this.cosButton.Name = "cosButton";
+            this.cosButton.Size = new System.Drawing.Size(75, 23);
+            this.cosButton.TabIndex = 14;
+            this.cosButton.Text = "cos()";
+            this.cosButton.UseVisualStyleBackColor = true;
+            this.cosButton.Click += new System.EventHandler(this.cosButton_Click);
+            // 
+            // tanButton
+            // 
+            this.tanButton.Location = new System.Drawing.Point(256, 302);
+            this.tanButton.Name = "tanButton";
+            this.tanButton.Size = new System.Drawing.Size(75, 23);
+            this.tanButton.TabIndex = 15;
+            this.tanButton.Text = "tan()";
+            this.tanButton.UseVisualStyleBackColor = true;
+            this.tanButton.Click += new System.EventHandler(this.tanButton_Click);
+            // 
+            // asinButton
+            // 
+            this.asinButton.Location = new System.Drawing.Point(256, 327);
+            this.asinButton.Name = "asinButton";
+            this.asinButton.Size = new System.Drawing.Size(75, 23);
+            this.asinButton.TabIndex = 16;
+            this.asinButton.Text = "asin()";
+            this.asinButton.UseVisualStyleBackColor = true;
+            this.asinButton.Click += new System.EventHandler(this.asinButton_Click);
+            // 
+            // acosButton
+            // 
+            this.acosButton.Location = new System.Drawing.Point(256, 356);
+            this.acosButton.Name = "acosButton";
+            this.acosButton.Size = new System.Drawing.Size(75, 23);
+            this.acosButton.TabIndex = 17;
+            this.acosButton.Text = "acos()";
+            this.acosButton.UseVisualStyleBackColor = true;
+            this.acosButton.Click += new System.EventHandler(this.acosButton_Click);
+            // 
+            // atanButton
+            // 
+            this.atanButton.Location = new System.Drawing.Point(256, 382);
+            this.atanButton.Name = "atanButton";
+            this.atanButton.Size = new System.Drawing.Size(75, 23);
+            this.atanButton.TabIndex = 18;
+            this.atanButton.Text = "atan()";
+            this.atanButton.UseVisualStyleBackColor = true;
+            this.atanButton.Click += new System.EventHandler(this.atanButton_Click);
+            // 
+            // sqrtButton
+            // 
+            this.sqrtButton.Location = new System.Drawing.Point(337, 246);
+            this.sqrtButton.Name = "sqrtButton";
+            this.sqrtButton.Size = new System.Drawing.Size(75, 23);
+            this.sqrtButton.TabIndex = 19;
+            this.sqrtButton.Text = "sqrt()";
+            this.sqrtButton.UseVisualStyleBackColor = true;
+            this.sqrtButton.Click += new System.EventHandler(this.sqrtButton_Click);
+            // 
             // historyDisplay1
             // 
+            this.historyDisplay1.BackColor = System.Drawing.SystemColors.ControlDark;
             this.historyDisplay1.Location = new System.Drawing.Point(13, 13);
             this.historyDisplay1.Name = "historyDisplay1";
             this.historyDisplay1.Size = new System.Drawing.Size(503, 201);
@@ -174,6 +252,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 494);
+            this.Controls.Add(this.sqrtButton);
+            this.Controls.Add(this.atanButton);
+            this.Controls.Add(this.acosButton);
+            this.Controls.Add(this.asinButton);
+            this.Controls.Add(this.tanButton);
+            this.Controls.Add(this.cosButton);
+            this.Controls.Add(this.sinButton);
             this.Controls.Add(this.historyDisplay1);
             this.Controls.Add(this.btnNum0);
             this.Controls.Add(this.btnNum9);
@@ -210,6 +295,13 @@
         private System.Windows.Forms.Button btnNum9;
         private System.Windows.Forms.Button btnNum0;
         private HistoryDisplay historyDisplay1;
+        private System.Windows.Forms.Button sinButton;
+        private System.Windows.Forms.Button cosButton;
+        private System.Windows.Forms.Button tanButton;
+        private System.Windows.Forms.Button asinButton;
+        private System.Windows.Forms.Button acosButton;
+        private System.Windows.Forms.Button atanButton;
+        private System.Windows.Forms.Button sqrtButton;
     }
 }
 

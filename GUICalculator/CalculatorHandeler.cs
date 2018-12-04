@@ -47,7 +47,7 @@ namespace GUICalculator
                     _tb.Text = "Error: " + e.Message;
                     return false;
                 }
-                AdjustCursor();
+                AdjustCursor(_tb.Text.Length);
                 return true;
             }
         }
@@ -71,35 +71,55 @@ namespace GUICalculator
         }
         public void AddSymbol(string s)
         {
+            int cursorpos = _tb.SelectionStart;
             if (_tb.SelectedText == _tb.Text) //all is selected.
             {
                 _tb.Text = s;
+                cursorpos = _tb.Text.Length;
             }
             else
             {
-                _tb.Text = _tb.Text + s;
+                string tmp = _tb.Text;
+                
+                _tb.Text = _tb.Text.Insert(cursorpos,s);
+                cursorpos += s.Length;
             }
-            AdjustCursor();
+            AdjustCursor(cursorpos);
         }
-        public void AdjustCursor()
+        public void AdjustCursor(int pos)
         {
-            _tb.SelectionStart = _tb.Text.Length;
+            _tb.SelectionStart = pos;
         }
-
+        public void InsertSurroundingSelection(string prefix, string postfix)
+        {
+            if (_tb.SelectionLength > 0)
+            {
+                string text = _tb.Text;
+                text = text.Insert(_tb.SelectionStart, prefix);
+                text = text.Insert(_tb.SelectionStart + _tb.SelectionLength + prefix.Length, postfix);
+                _tb.Text = text;
+            }
+            else
+            {
+                _tb.Text = _tb.Text + prefix + postfix;
+                _tb.SelectionStart = _tb.Text.Length - postfix.Length;
+            }
+            _tb.Focus();
+        }
         public void HistoryUp()
         {
             _tb.Text = _commandHistory.Up(_tb.Text);
-            AdjustCursor();
+            AdjustCursor(_tb.Text.Length);
         }
         public void HistoryDown()
         {
             _tb.Text = _commandHistory.Down(_tb.Text);
-            AdjustCursor();
+            AdjustCursor(_tb.Text.Length);
         }
         public void HistoryDisplayReset()
         {
             _tb.Text = _commandHistory.Reset();
-            AdjustCursor();
+            AdjustCursor(_tb.Text.Length);
         }
     }
 }
