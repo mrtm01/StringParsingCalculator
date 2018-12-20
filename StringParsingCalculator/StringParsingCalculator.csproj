@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context\ReflectionContext.cs" />
     <Compile Include="Context\DefaultContext.cs" />
     <Compile Include="Context\IContext.cs" />
     <Compile Include="Exceptions\IdentifierNotFoundException.cs" />
@@ -63,6 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleMathLib\SimpleMathLib.csproj">
+      <Project>{1bd89a69-8615-42e6-9679-60af99e0790b}</Project>
+      <Name>SimpleMathLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

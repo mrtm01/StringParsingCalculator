@@ -23,7 +23,7 @@ namespace GUICalculator
             "Use clear to clear the history-window.";
         public CalculatorHandeler(System.Windows.Forms.TextBox textBox, MainForm mainForm, HistoryDisplay historyDisplay)
         {
-            _context = new DefaultContext();
+            _context = new ReflectionContext();
             _tb = textBox;
             _mainForm = mainForm;
             _historyDisplay = historyDisplay;

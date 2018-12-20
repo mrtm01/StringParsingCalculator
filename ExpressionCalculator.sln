@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringParsingCalcTests", "S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUICalculator", "GUICalculator\GUICalculator.csproj", "{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMathLib", "SimpleMathLib\SimpleMathLib.csproj", "{1BD89A69-8615-42E6-9679-60AF99E0790B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF999D23-8890-45F2-A7A8-1CC3C1C4F0CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BD89A69-8615-42E6-9679-60AF99E0790B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD89A69-8615-42E6-9679-60AF99E0790B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD89A69-8615-42E6-9679-60AF99E0790B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD89A69-8615-42E6-9679-60AF99E0790B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

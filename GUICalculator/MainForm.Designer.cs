@@ -47,8 +47,12 @@
             this.acosButton = new System.Windows.Forms.Button();
             this.atanButton = new System.Windows.Forms.Button();
             this.sqrtButton = new System.Windows.Forms.Button();
-            this.historyDisplay1 = new GUICalculator.HistoryDisplay();
             this.ExpButton = new System.Windows.Forms.Button();
+            this.PlusButton = new System.Windows.Forms.Button();
+            this.MinusButton = new System.Windows.Forms.Button();
+            this.MultiplicationButton = new System.Windows.Forms.Button();
+            this.DivisionButton = new System.Windows.Forms.Button();
+            this.historyDisplay1 = new GUICalculator.HistoryDisplay();
             this.SuspendLayout();
             // 
             // mainTextBox
@@ -240,6 +244,56 @@
             this.sqrtButton.UseVisualStyleBackColor = true;
             this.sqrtButton.Click += new System.EventHandler(this.SqrtButton_Click);
             // 
+            // ExpButton
+            // 
+            this.ExpButton.Location = new System.Drawing.Point(256, 356);
+            this.ExpButton.Name = "ExpButton";
+            this.ExpButton.Size = new System.Drawing.Size(75, 23);
+            this.ExpButton.TabIndex = 20;
+            this.ExpButton.Text = "^";
+            this.ExpButton.UseVisualStyleBackColor = true;
+            this.ExpButton.Click += new System.EventHandler(this.ExpButton_Click);
+            // 
+            // PlusButton
+            // 
+            this.PlusButton.Location = new System.Drawing.Point(256, 246);
+            this.PlusButton.Name = "PlusButton";
+            this.PlusButton.Size = new System.Drawing.Size(75, 23);
+            this.PlusButton.TabIndex = 21;
+            this.PlusButton.Text = "+";
+            this.PlusButton.UseVisualStyleBackColor = true;
+            this.PlusButton.Click += new System.EventHandler(this.PlusButton_Click);
+            // 
+            // MinusButton
+            // 
+            this.MinusButton.Location = new System.Drawing.Point(256, 272);
+            this.MinusButton.Name = "MinusButton";
+            this.MinusButton.Size = new System.Drawing.Size(75, 23);
+            this.MinusButton.TabIndex = 22;
+            this.MinusButton.Text = "-";
+            this.MinusButton.UseVisualStyleBackColor = true;
+            this.MinusButton.Click += new System.EventHandler(this.MinusButton_Click);
+            // 
+            // MultiplicationButton
+            // 
+            this.MultiplicationButton.Location = new System.Drawing.Point(256, 301);
+            this.MultiplicationButton.Name = "MultiplicationButton";
+            this.MultiplicationButton.Size = new System.Drawing.Size(75, 23);
+            this.MultiplicationButton.TabIndex = 23;
+            this.MultiplicationButton.Text = "*";
+            this.MultiplicationButton.UseVisualStyleBackColor = true;
+            this.MultiplicationButton.Click += new System.EventHandler(this.MultiplicationButton_Click);
+            // 
+            // DivisionButton
+            // 
+            this.DivisionButton.Location = new System.Drawing.Point(256, 327);
+            this.DivisionButton.Name = "DivisionButton";
+            this.DivisionButton.Size = new System.Drawing.Size(75, 23);
+            this.DivisionButton.TabIndex = 24;
+            this.DivisionButton.Text = "/";
+            this.DivisionButton.UseVisualStyleBackColor = true;
+            this.DivisionButton.Click += new System.EventHandler(this.DivisionButton_Click);
+            // 
             // historyDisplay1
             // 
             this.historyDisplay1.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -248,21 +302,15 @@
             this.historyDisplay1.Size = new System.Drawing.Size(503, 201);
             this.historyDisplay1.TabIndex = 12;
             // 
-            // ExpButton
-            // 
-            this.ExpButton.Location = new System.Drawing.Point(256, 246);
-            this.ExpButton.Name = "ExpButton";
-            this.ExpButton.Size = new System.Drawing.Size(75, 23);
-            this.ExpButton.TabIndex = 20;
-            this.ExpButton.Text = "^";
-            this.ExpButton.UseVisualStyleBackColor = true;
-            this.ExpButton.Click += new System.EventHandler(this.ExpButton_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(528, 494);
+            this.Controls.Add(this.DivisionButton);
+            this.Controls.Add(this.MultiplicationButton);
+            this.Controls.Add(this.MinusButton);
+            this.Controls.Add(this.PlusButton);
             this.Controls.Add(this.ExpButton);
             this.Controls.Add(this.sqrtButton);
             this.Controls.Add(this.atanButton);
@@ -286,6 +334,7 @@
             this.Controls.Add(this.mainTextBox);
             this.Name = "MainForm";
             this.Text = "GUICalc";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -315,6 +364,10 @@
         private System.Windows.Forms.Button atanButton;
         private System.Windows.Forms.Button sqrtButton;
         private System.Windows.Forms.Button ExpButton;
+        private System.Windows.Forms.Button PlusButton;
+        private System.Windows.Forms.Button MinusButton;
+        private System.Windows.Forms.Button MultiplicationButton;
+        private System.Windows.Forms.Button DivisionButton;
     }
 }
 

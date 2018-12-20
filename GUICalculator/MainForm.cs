@@ -82,6 +82,22 @@ namespace GUICalculator
                     _calculatorHandeler.HistoryDisplayReset();
                     e.Handled = true;
                     break;
+                case (char)43: //+
+                    PlusButton.PerformClick();
+                    e.Handled = true;
+                    break;
+                case (char)45:
+                    MinusButton.PerformClick();
+                    e.Handled = true;
+                    break;
+                case (char)42: //*
+                    MultiplicationButton.PerformClick();
+                    e.Handled = true;
+                    break;
+                case (char)47: //division
+                    DivisionButton.PerformClick();
+                    e.Handled = true;
+                    break;
                 default:
                     //MessageBox.Show("Got keypress in main form: " + (int)e.KeyChar);
                     break;
@@ -157,7 +173,6 @@ namespace GUICalculator
             }
         }
 
-
         private void MainTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -217,6 +232,33 @@ namespace GUICalculator
         {
             _calculatorHandeler.AddSymbol("^");
 
+        }
+
+        private void PlusButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.AddSymbol("+");
+        }
+
+        private void MinusButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.AddSymbol("-");
+        }
+
+        private void MultiplicationButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.AddSymbol("*");
+        }
+
+        private void DivisionButton_Click(object sender, EventArgs e)
+        {
+            _calculatorHandeler.AddSymbol("/");
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            var exe = System.Reflection.Assembly.GetExecutingAssembly();
+            var iconStream = exe.GetManifestResourceStream("GUICalculator.AppIcon.ico");
+            if (iconStream != null) Icon = new Icon(iconStream);
         }
     }
 }

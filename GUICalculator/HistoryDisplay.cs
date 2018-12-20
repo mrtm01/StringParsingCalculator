@@ -23,23 +23,23 @@ namespace GUICalculator
         public void AddLine(string s)
         {
             _textLines.Add(s);
-            this.Invalidate();
+            Invalidate();
             _messageMode = false;
         }
         public void Clear()
         {
             _textLines.Clear();
-            this.Invalidate();
+            Invalidate();
         }
         public void EnterMessageMode()
         {
             _messageMode = true;
-            this.Invalidate();
+            Invalidate();
         }
         public void ExitMessageMode()
         {
             _messageMode = false;
-            this.Invalidate();
+            Invalidate();
         }
         public bool IsInMessageMode()
         {
